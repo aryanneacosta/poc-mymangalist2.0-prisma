@@ -18,7 +18,7 @@ async function postSeries(req: Request, res: Response) {
     }
 
     const newSerieAdded = await insertNewSerie(serie);
-    res.send(`You added 1 new manga ${newSerieAdded}`);
+    res.send(`You added 1 new manga series`);
 }
 
 async function getSeriesFilter(req: Request, res: Response) {

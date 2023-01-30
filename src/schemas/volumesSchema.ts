@@ -19,6 +19,6 @@ export const FinishedVolumeSchema = Joi.object({
     number: Joi.number().required(),
     status: Joi.string().valid('unread', 'reading', 'read').required(),
     read_chapters: Joi.number().required(),
-    rating: Joi.string().valid('empty', '0.0', '1.0', '2.0', '3.0', '4.0', '5.0').required(),
+    rating: Joi.string().valid('empty', 'zero', 'one', 'two', 'three', 'four', 'five').required(),
     description: Joi.string().required()
 });

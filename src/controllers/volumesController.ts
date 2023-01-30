@@ -13,7 +13,7 @@ async function postNewVolume(req: Request, res: Response) {
     
     const { error } = NewVolumeSchema.validate(volume);
     if (error) {
-        return res.status(400).send({
+        return res.sendStatus(400).send({
             message: error.message
         });
     }
@@ -21,7 +21,7 @@ async function postNewVolume(req: Request, res: Response) {
     const serieExist = volume.serie_name;
     const verifySerieId = (await findSerie(serieExist)).id;
     if (!verifySerieId) {
-        return res.status(400).send('Please, insert a serie that already exists in your series added');
+        return res.sendStatus(400).send('Please, insert a serie that already exists in your series added');
     }
     
     const newVolume: NewVolumeToDB = {
@@ -31,8 +31,7 @@ async function postNewVolume(req: Request, res: Response) {
         total_chapters: volume.total_chapters
     }
 
-    const newVolumeAdded = await insertNewVolume(newVolume);
-    res.send(`You added ${newVolumeAdded} new volume`);
+    res.send(`You added 1 new volume`);
 }
 
 async function updateNewVolumeRead(req: Request, res: Response) {
@@ -63,8 +62,7 @@ async function updateNewVolumeRead(req: Request, res: Response) {
         read_chapters: volume.read_chapters
     }
 
-    const newVolumeUpdated = await updateVolume(newUpdate);
-    res.send(`You updated ${newVolumeUpdated} new volume`);
+    res.send(`You updated 1 new volume`);
 }
 
 async function finishedVolume(req: Request, res: Response) {
@@ -98,7 +96,7 @@ async function finishedVolume(req: Request, res: Response) {
     }
 
     const newFinishedVolume = await finishVolume(newFinished);
-    res.send(`You finished ${newFinishedVolume} volume`);
+    res.send(`You finished 1 volume`);
 }
 
 async function deletedVolume(req: Request, res: Response) {
@@ -109,7 +107,7 @@ async function deletedVolume(req: Request, res: Response) {
         return res.send(`Insert a valid manga id`);
     }
 
-    res.send(`${volumeDeleted} manga deleted`);
+    res.send(`1 manga deleted`);
 }
 
 export {
