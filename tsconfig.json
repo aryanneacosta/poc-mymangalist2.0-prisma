@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "dist",
+        "outDir": "../dist",
         "esModuleInterop": true,
         "module": "es6",
         "moduleResolution": "Node"
