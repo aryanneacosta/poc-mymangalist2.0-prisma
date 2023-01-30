@@ -57,12 +57,13 @@ VOLUMES ROUTES:
 
 	PUT: /finish
 	Update a volume that you finished, you can add a rating and a avaliation in the description area.
+	The rating system is now based on the rate written, such as "zero", "one", "two", up to "five".
 		- Body: { 
   			"serie_name": "SPYxFAMILY",
 			"number": 1
   			"status": "read",
 			"read_chapters": 20,
-			"rating": "5.0",
+			"rating": "five",
 			"description": "Anya likes peanuts, but hates carrots"
 			
  		}
