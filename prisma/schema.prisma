@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model series {
+  id      Int        @id @default(autoincrement())
+  name    String     @db.VarChar(100)
+  author  String     @db.VarChar(50)
+  genre   genre_type
+  image   String?    @db.VarChar(500)
+  volumes volumes[]
+}
+
+model volumes {
+  id             Int         @id @default(autoincrement())
+  serie_id       Int
+  status         status_type @default(unread)
+  image          String?     @db.VarChar(500)
+  read_chapters  Int?        @default(0)
+  total_chapters Int
+  rating         rating_type @default(empty)
+  description    String      @default("empty") @db.VarChar(500)
+  number         Int
+  series         series      @relation(fields: [serie_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+enum genre_type {
+  shounen
+  shoujo
+  seinen
+  josei
+}
+
+enum rating_type {
+  empty
+  zero
+  one
+  two
+  three
+  four
+  five
+}
+
+enum status_type {
+  unread
+  reading
+  read
+}
